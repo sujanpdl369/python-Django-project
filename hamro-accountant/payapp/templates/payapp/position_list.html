@@ -1,0 +1,115 @@
+{% load static %}
+<!DOCTYPE html> 
+<html lang="en">
+  <title>Position Lists | Hamro Accountant</title>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS Stylesheet -->
+    <link rel="stylesheet" href="{% static 'css/dashboard.css'%}">
+    <!-- Fontawesome -->
+    <script src="https://kit.fontawesome.com/ae4127b743.js" crossorigin="anonymous"></script>
+</head>
+<div class="header">
+    <nav class="navbar">
+      <div class="content">
+        <div class="logo">
+          <a href="{% url 'payapp:index'%}"><i class="fa-solid fa-pen-to-square"></i> Hamro Account</a>
+        </div>
+        <ul class="menu-list">
+          <div class="icon cancel-btn">
+            <i class="fas fa-times"></i>
+          </div>
+          {% if user.is_authenticated %}
+          {%if not user.is_staff%}
+            <!-- Employee Status -->
+            <li><a href="{% url 'payapp:balance' user.employee.id%}">View Balance</a></li>
+            <li><a href="{% url 'payapp:employee_details'%}">Your Details</a></li>        
+          {% else %}
+            {% if not user.is_superuser %}
+              {% if user.accountant.is_admin %}
+              <!-- Admin Accountant Status -->
+              <li><a href="{% url 'payapp:payment_list' %}">Transactions</a></li>
+              <li><a href="https://dashboard.stripe.com/acct_1Lz101IdZsEKyeut/test/balance">Tax Fund</a></li>
+              {% endif %}
+              <!--Accountant Status -->
+              <li><a href="{% url 'payapp:payment_create'%}">Pay Salary</a></li>
+              <li><a href="{% url 'payapp:accountant_details'%}">Your Details</a></li>
+              <li><a href="{% url 'payapp:employee_list' %}">Employee</a></li>
+            {% elif user.is_superuser %}
+            <!-- Super User Status -->
+            <li><a href="{% url 'admin:index' %}">Admin Panel</a></li>
+            <li><a href="{% url 'payapp:users_list'%}">System Users</a></li>
+            {% endif %}
+          {% endif %}
+          <li><a href="{% url 'payapp:change_password'%}">Change Password</a></li>
+          <!-- <li><a href="#">{{user.username}}</a></li> -->
+          <li class="btn"><a href="{% url 'payapp:logout'%}"><i class="fa-solid fa-unlock"></i> Logout</a></li>
+        {% endif %}
+        {% if not user.is_authenticated %}
+          <li class="btn"><a href="{% url 'payapp:login'%}"><i class="fa-solid fa-unlock"></i> Login</a></li>
+          <li class="btn"><a href="{% url 'payapp:accoutant_create'%}"><i class="fa-solid fa-user"></i>Sign Up</a></li>
+        {% endif %}
+          </ul>
+        <div class="icon menu-btn">
+          <i class="fas fa-bars"></i>
+        </div>
+      </div>
+    </nav>
+  <!-- </div> -->
+  <div class="main">
+    <main class="mainbar">
+        <div class="dashboard-section">
+            <p class="dashboard-title">Positions List</p>
+            {% if user.accountant.is_admin %}
+            <a class="button-url m-l-2 m-b-05" href="{% url 'payapp:position_create'%}" class="create-position">Create New Position</a>
+            {% endif %}
+            <div class="table">
+                <div class="tr th">
+                    <div class="td thead td-1">Position Id</div>
+                    <div class="td thead td-2">Position Name</div>
+                    <div class="td thead td-3">Salary</div>
+                    {% if user.accountant.is_admin %}
+                    <div class="td thead td-4">Action</div>
+                    {% endif %}
+                </div>
+                {% for position in positions %}
+                <div class="tr">
+                    <div class="td td-1">{{position.id}}</div>
+                    <div class="td td-2"><a href="{% url 'payapp:position_detail' position.id%}">{{position.position_name}}</a></div>
+                    <div class="td td-3">
+                        {{position.base_salary}}
+                    </div>
+                    {% if user.accountant.is_admin %}
+                    <div class="td td-4"><a class="button-url" href="{% url 'payapp:position_update' position.id%}">Update</a></div>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </main>
+  </div>
+  </div>
+</body>
+</html>
+
+
+<script type="text/javascript">
+    const body = document.querySelector("body");
+    const navbar = document.querySelector(".navbar");
+    const menuBtn = document.querySelector(".menu-btn");
+    const cancelBtn = document.querySelector(".cancel-btn");
+    menuBtn.onclick = ()=>{
+      navbar.classList.add("show");
+      menuBtn.classList.add("hide");
+      body.classList.add("disabled");
+    }
+    cancelBtn.onclick = ()=>{
+      body.classList.remove("disabled");
+      navbar.classList.remove("show");
+      menuBtn.classList.remove("hide");
+    }
+    window.onscroll = ()=>{
+      this.scrollY > 20 ? navbar.classList.add("sticky") : navbar.classList.remove("sticky");
+    }
+  </script>

@@ -1,0 +1,40 @@
+{% comment %} <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+{% load crispy_forms_tags %}
+<form method="post">
+    {% csrf_token %}
+    {{user|crispy}}
+    {{employee|crispy}}    
+    <input type="submit" value='submit'>
+</form> {% endcomment %}
+
+
+{% load static %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Position Update HTML</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/position.css'%}"> 
+</head>
+<body class="bg-img">
+    <div class="form wrapper">
+        <div class="title">Register Employee</div>
+<form method="post">
+        {% csrf_token %}
+        {% comment %} <div class="field">
+        {{form.position_name|as_crispy_field}}
+        </div> {% endcomment %}
+        {{user|crispy}}
+        {{employee|crispy}}
+        <div class="field">
+            <input type="submit" value="Create Employee" class="button-update">
+          </div>
+          <a href="javascript:history.back()" class="white">Go Back</a>
+    </form>
+</div>     
+</body>
+</html>

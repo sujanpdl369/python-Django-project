@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Login | Welcome</title>
+    <link rel="stylesheet" href="{% static 'css/login.css'%}">
+  </head>
+  <body class="bg-img"> 
+    <div class="wrapper">
+      <div class="title">Login</div>
+      <form method="post">
+        {% csrf_token %}
+        <div class="source-errors">
+        {{user.non_field_errors}}
+        {{user.source.errors}}
+        {{user.source}}
+        </div>
+        <div class="field">
+          {{user.username}}
+          <label>Username</label>
+        </div>
+        {{user.name.errors}}
+        <div class="field">
+          {{user.password}}
+          <label>Password</label>
+        </div>
+        {{user.password.errors}}
+        <div class="content">
+          <div class="checkbox">
+            <input type="checkbox" id="remember-me">
+            <label for="remember-me">Remember me</label>
+          </div>
+          <div class="pass-link"><a href="#">Forgot password?</a></div>
+        </div>
+        <div class="field">
+          <input type="submit" value="Login">
+        </div>
+        <div class="signup-link">Not a member?<a href="{% url 'payapp:accoutant_create'%}"> Signup now</a></div>
+      </form>
+    </div>
+
+  </body>
+</html>
+
+

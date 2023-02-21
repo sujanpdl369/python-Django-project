@@ -1,0 +1,44 @@
+{% load static %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Create Positions | Hamro Accountant </title>
+    <link rel="stylesheet" href="{% static 'css/login.css'%}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+  </head>
+  <body class="bg-img"> 
+    <div class="wrapper">
+      <div class="title">Create Positions</div>
+      <form method="post">
+        {% csrf_token %}
+        <div class="source-errors">
+        {{form.non_field_errors}}
+        {{form.source.errors}}
+        {{form.source}}
+        </div>
+        <div class="field">
+          {{form.position_name}}
+          <label>Position Name</label>
+        </div>
+        {{form.position_name.errors}}
+        <div class="field">
+            {{form.base_salary}}
+            <label>Base Salary</label>
+        </div>
+        {{form.base_salary.errors}}
+        <div class="field">
+          {{form.position_details}}
+          <label>Position Details</label>
+        </div>
+        {{form.email.errors}}
+        <div class="field">
+          <input type="submit" value="Create">
+        </div>
+        <div class="signup-link"><a href="{% url 'payapp:position_list'%}">Back to Previous ?</a></div>
+      </form>
+    </div>
+
+  </body>
+</html>

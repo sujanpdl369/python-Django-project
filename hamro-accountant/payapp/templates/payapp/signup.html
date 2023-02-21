@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Sign Up | Welcome</title>
+    <!-- CSS Stylesheet -->
+    <link rel="stylesheet" href="{% static 'css/signup.css'%}">
+  </head>
+  <body class="bg-img"> 
+    <div class="wrapper">
+      <div class="title">Accountant Sign up</div>
+      <form method="post">
+        {% csrf_token %}
+        <div class="field">
+          {{user.username}}
+          <label>Username</label>
+        </div>
+        <div class="field">
+          {{user.email}}
+          <label>Email Address</label>
+        </div>
+        <div class="field">
+          {{user.password1}}
+          <label>Password</label>
+        </div>
+        <div class="field">
+          {{user.password2}}
+          <label> Confirm Password</label>
+        </div>
+        <div class="content">
+          <div class="checkbox">
+            {{user.admin_status}}
+            <label for="terms&condition">Admin Status</label>
+          </div>
+        </div>
+        <div class="field">
+          <input type="submit" value="Sign Up">
+        </div>
+        <div class="signup-link">Already a member?<a href="{% url 'payapp:login'%}"> Login</a></div>
+      </form>
+    </div>
+
+  </body>
+</html>
+
+

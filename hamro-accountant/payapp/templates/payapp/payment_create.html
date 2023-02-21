@@ -1,0 +1,36 @@
+{% load static %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title> Make Payment | Hamro Accountant</title>
+    <!-- CSS Stylesheet -->
+    <link rel="stylesheet" href="{% static 'css/signup.css'%}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+  </head>
+  <body class="bg-img"> 
+    <div class="wrapper">
+      <div class="title">Pay Salary</div>
+      <form method="post">
+        {% csrf_token %}
+          {{form.employee|as_crispy_field }}
+        <div class="field">
+          {{form.total_salary}}
+          <label>Total Salary</label>
+        </div>
+        <div class="field">
+          {{form.payment_month}}
+          <label>How Much Months Salary ?</label>
+        </div>
+        <div class="field">
+          <input type="submit" value="Make Payment">
+        </div>
+        <!-- <div class="signup-link">Already a member?<a href="{% url 'payapp:login'%}"> Login</a></div> -->
+      </form>
+    </div>
+
+  </body>
+</html>
+
+

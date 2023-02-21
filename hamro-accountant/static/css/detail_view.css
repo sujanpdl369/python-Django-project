@@ -1,0 +1,398 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat',sans-serif;
+}
+
+::selection {
+    background: rgb(0, 123, 255, 0.3);
+}
+
+.content {
+    max-width: 1250px;
+    margin: auto;
+    padding: 0 30px;
+}
+
+.navbar {
+    background-color: #0078AA;
+    position: fixed;
+    width: 100%;
+    z-index: 2;
+    padding: 25px 0;
+    transition: all 0.3s ease;
+}
+
+.navbar.sticky {
+    background: #0078AA;
+    padding: 10px 0;
+    box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.1);
+}
+
+.navbar .content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.navbar .logo a {
+    color: #fff;
+    font-size: 30px;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.navbar .menu-list {
+    display: inline-flex;
+}
+
+.menu-list li {
+    list-style: none;
+}
+
+.menu-list li a {
+    color: #fff;
+    font-size: 18px;
+    font-weight: 650;
+    margin-left: 25px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.menu-list li a:hover {
+    color: #94B49F;
+}
+.btn a {
+   background-color: #0078AA;
+   padding: 7px 15px;
+   opacity: 0.8;
+   border-radius: 20px;
+}
+.header {
+    background: url("../images/showcase.jpeg") no-repeat;
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    display: flex;
+    flex-direction: column;
+}
+
+.about {
+    padding: 30px 0;
+}
+
+.about .title {
+    font-size: 38px;
+    font-weight: 700;
+}
+
+.about p {
+    padding-top: 20px;
+    text-align: justify;
+}
+
+.icon {
+    color: #fff;
+    font-size: 20px;
+    cursor: pointer;
+    display: none;
+}
+
+.menu-list .cancel-btn {
+    position: absolute;
+    right: 30px;
+    top: 20px;
+}
+
+@media (max-width:1230px) {
+    .content {
+        padding: 0 60px;
+    }
+}
+
+@media (max-width:1100px) {
+    .content {
+        padding: 0 40px;
+    }
+}
+
+@media (max-width:900px) {
+    .content {
+        padding: 0 30px;
+    }
+}
+
+@media (max-width:868px) {
+    .icon {
+        display: block;
+    }
+
+    body.disabled {
+        overflow: hidden;
+    }
+
+    .icon.hide {
+        display: none;
+    }
+
+    .navbar .menu-list {
+        position: fixed;
+        height: 100vh;
+        width: 100%;
+        max-width: 400px;
+        left: -100%;
+        top: 0px;
+        display: block;
+        padding: 40px 0;
+        text-align: center;
+        background: #222;
+        transition: all 0.3s ease;
+    }
+
+    .navbar.show .menu-list {
+        left: 0%;
+    }
+
+    .navbar .menu-list li {
+        margin-top: 45px;
+    }
+
+    .navbar .menu-list li a {
+        font-size: 23px;
+        margin-left: -100%;
+        transition: 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
+
+    .navbar.show .menu-list li a {
+        margin-left: 0;
+    }
+}
+
+@media (max-width:380px) {
+    .navbar .logo a {
+        font-size: 27px;
+    }
+}
+
+/* Footer */
+footer {
+    display: flex;
+    position: relative;
+    width: 100%;
+    height: auto;
+    padding: 20px 50px;
+    background: #333;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+footer.container {
+    display: flex;
+    flex-direction: space-between;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+footer .container .sec {
+    margin-right: 30px;
+}
+
+footer .container .sec.aboutus {
+    width: 100%;
+}
+
+footer .container h2 {
+    position: relative;
+    color: #fff;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+footer .container h2:before {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 50px;
+    height: 2px;
+    background: #0078AA;
+}
+
+footer p {
+    color: #999;
+}
+
+.sci {
+    margin-top: 20px;
+    display: flex;
+    
+}
+
+.sci li {
+    list-style: none;
+    
+}
+
+.sci li a {
+    display: inline-block;
+    width: 35px;
+    height: 35px;
+    background: #0078AA;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10px;
+    text-decoration: none;
+    border-radius: 50%;
+}
+
+.sci li a:hover {
+    background: #94B49F;
+}
+
+.sci li a .fa {
+    color: #fff;
+    font-size: 20px;
+}
+
+.contact {
+    width: 100%;
+    margin-right: 0 !important;
+}
+
+.contact .info {
+    position: relative;
+}
+
+.contact .info li {
+    display: flex;
+    margin-bottom: 16px;
+    list-style: none;
+}
+
+.contact .info li span:nth-child(1) {
+    color: #fff;
+    font-size: 20px;
+    margin-right: 10px;
+}
+
+.contact .info li span {
+    color: #999;
+}
+
+.contact .info li a {
+    color: #999;
+    text-decoration: none;
+}
+
+.contact .info li a:hover {
+    color: #fff;
+}
+
+.copyrightText {
+    /* margin: 100%; */
+    background: #222;
+    padding: 8px;
+    text-align: center;
+    color: #999;
+}
+
+
+@media (max-width:991px) {
+    footer {
+        padding: 40px;
+    }
+
+    footer .container {
+        flex-direction: column;
+    }
+
+    footer .container .sec {
+        margin-right: 0;
+        margin-bottom: 40px;
+    }
+
+    .copyrightText {
+        padding: 8px 40px;
+    }
+}
+
+.dashboard-section{
+    background-color: white;
+    width:70%;
+    margin:0 auto;
+    margin-top: 8rem;
+    border-radius: 2rem;
+}
+
+.dashboard-title{
+    padding-top: 1rem;
+    text-align: center;
+    /* color:#0078AA; */
+    margin:0 auto;
+    font-size: 3rem;
+}
+
+.parent-flex{
+    margin-left:10%;
+    display: flex;
+    flex-direction: column;
+}
+.number{
+    padding:0.7rem;
+}
+.title{
+    font-size:1.2rem;
+}
+.button-url{
+    background-color:limegreen;
+    width:5rem;
+    padding:1rem;
+    /* border: none; */
+    color:white;
+    font-size:1rem;
+    border-radius: 2rem;
+    text-decoration: none;
+   }
+@media (max-width:500px) {
+ .dashboard-section{
+    background-color: white;
+    width:20rem;
+    margin:0 auto;
+    margin-top: 8rem;
+    /* border-radius: 2rem; */
+}
+.dashboard-title{
+    /* padding-top: 1rem; */
+    text-align: center;
+    /* color:#0078AA; */
+    margin:0 auto;
+    font-size: 1rem;
+}   
+}
+@media (min-width:500px) and (max-width:900px) {
+    .dashboard-section{
+       background-color: white;
+       width:70%;
+       margin:0 auto;
+       margin-top: 8rem;
+       /* border-radius: 2rem; */
+   }
+   .dashboard-title{
+       /* padding-top: 1rem; */
+       text-align: center;
+       /* color:#0078AA; */
+       margin:0 auto;
+       font-size: 1rem;
+   }   
+   }
+   .w-2{
+    width:11rem;
+   }
+   .w-15{
+    width:10rem;
+   }

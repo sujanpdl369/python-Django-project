@@ -1,0 +1,131 @@
+{% load static %}
+<!DOCTYPE html> 
+<html lang="en">
+  <title>Hamro Account | Welcome</title>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS Stylesheet -->
+    <link rel="stylesheet" href="{% static 'css/style.css'%}">
+    <!-- Fontawesome -->
+    <script src="https://kit.fontawesome.com/ae4127b743.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="header">
+      <nav class="navbar">
+        <div class="content">
+          <div class="logo">
+            <a href="{% url 'payapp:index'%}"><i class="fa-solid fa-pen-to-square"></i> Hamro Account</a>
+          </div>
+          <ul class="menu-list">
+            <div class="icon cancel-btn">
+              <i class="fas fa-times"></i>
+            </div>
+            {% if user.is_authenticated %}
+              {%if not user.is_staff%}
+                <!-- Employee Status -->
+                <li><a href="{% url 'payapp:balance' user.employee.id%}">View Balance</a></li>
+                <li><a href="{% url 'payapp:employee_details'%}">Your Details</a></li>        
+              {% else %}
+                {% if not user.is_superuser %}
+                  {% if user.accountant.is_admin %}
+                  <!-- Admin Accountant Status -->
+                  <li><a href="{% url 'payapp:payment_list' %}">Transactions</a></li>
+                  <li><a href="https://dashboard.stripe.com/acct_1Lz101IdZsEKyeut/test/balance">Tax Fund</a></li>
+                  {% endif %}
+                  <!--Accountant Status -->
+                  <li><a href="{% url 'payapp:payment_create'%}">Pay Salary</a></li>
+                  <li><a href="{% url 'payapp:accountant_details'%}">Your Details</a></li>
+                  <li><a href="{% url 'payapp:employee_list' %}">Employee</a></li>
+                {% elif user.is_superuser %}
+                <!-- Super User Status -->
+                <li><a href="{% url 'admin:index' %}">Admin Panel</a></li>
+                <li><a href="{% url 'payapp:users_list'%}">System Users</a></li>
+                {% endif %}
+              {% endif %}
+              <li><a href="{% url 'payapp:change_password'%}">Change Password</a></li>
+              <!-- <li><a href="#">{{user.username}}</a></li> -->
+              <li class="btn"><a href="{% url 'payapp:logout'%}"><i class="fa-solid fa-unlock"></i> Logout</a></li>
+            {% endif %}
+            {% if not user.is_authenticated %}
+              <li class="btn"><a href="{% url 'payapp:login'%}"><i class="fa-solid fa-unlock"></i> Login</a></li>
+              <li class="btn"><a href="{% url 'payapp:accoutant_create'%}"><i class="fa-solid fa-user"></i>Sign Up</a></li>
+            {% endif %}
+            </ul>
+          <div class="icon menu-btn">
+            <i class="fas fa-bars"></i>
+          </div>
+        </div>
+      </nav>
+  </div>
+
+  <div class="main">
+    <p class="motto">Government Platform for Paying Salary</p><br>
+    <br>
+    <a class="main-btn" href="{% url 'payapp:position_list'%}">View Positions</a>
+  </div>
+  <!-- Footer -->
+    <footer>
+      <div class="container">
+        <div class="row">
+            
+                <div class="sec contact">
+                    <h2>Contact Us</h2>
+                    <ul class="info">
+                        <li>
+                            <span><i class="fa fa-map-marker" aria-hidden="true"></i></span>
+                            <span>New-Baneshwor, Kathmandu</span>
+                        </li>
+                        <li>
+                            <span><i class="fa fa-phone" aria-hidden="true"></i></span>
+                            <p><a href="tel:123456789">01-4455667</a><br>
+                            <a href="tel:123456789">01-4455668</a></p>
+                        </li>
+                        <li>
+                            <span><i class="fa fa-envelope" aria-hidden="true"></i></i></span>
+                            <p><a href="mailto:info@hamroaccount.com">info@hamroaccount.com</a></p>
+                        </li>
+                    </ul>
+                    <ul class="sci">
+                        <li><a href="#"><i class="fa fa-facebook-official" aria-hidden="true"></i></a></li> 
+                        <li><a href="#"><i class="fa fa-twitter-square" aria-hidden="true"></i></a></li> 
+                        <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li> 
+                        <li><a href="#"><i class="fa fa-youtube-play" aria-hidden="true"></i></a></li> 
+                    </ul>
+                    
+                </div>
+            </div>
+        </div>
+       </div> 
+    </footer>
+    <div>
+      <div class="copyrightText">
+        <p>Copyright © 2022 Hamro Account. All Rights Reserved.</p>
+      </div>
+    </div>
+    <!-- End Footer -->
+
+  <script type="text/javascript">
+    const body = document.querySelector("body");
+    const navbar = document.querySelector(".navbar");
+    const menuBtn = document.querySelector(".menu-btn");
+    const cancelBtn = document.querySelector(".cancel-btn");
+    menuBtn.onclick = ()=>{
+      navbar.classList.add("show");
+      menuBtn.classList.add("hide");
+      body.classList.add("disabled");
+    }
+    cancelBtn.onclick = ()=>{
+      body.classList.remove("disabled");
+      navbar.classList.remove("show");
+      menuBtn.classList.remove("hide");
+    }
+    window.onscroll = ()=>{
+      this.scrollY > 20 ? navbar.classList.add("sticky") : navbar.classList.remove("sticky");
+    }
+  </script>
+
+</body>
+</html>
+
+
